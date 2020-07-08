@@ -245,8 +245,6 @@ dishRouter
           if (dish != null && dish.comments.id(req.params.commentId) != null) {
             var id1 = req.user._id;
             var id2 = dish.comments.id(req.params.commentId).author._id;
-            console.log(id1);
-            console.log(id2);
             if (id1.equals(id2)) {
               if (req.body.rating) {
                 dish.comments.id(req.params.commentId).rating = req.body.rating;
@@ -295,8 +293,6 @@ dishRouter
           if (dish != null && dish.comments.id(req.params.commentId) != null) {
             var id1 = req.user._id;
             var id2 = dish.comments.id(req.params.commentId).author._id;
-            console.log(id1);
-            console.log(id2);
             if (id1.equals(id2)) {
               dish.comments.id(req.params.commentId).remove();
               dish.save().then(
