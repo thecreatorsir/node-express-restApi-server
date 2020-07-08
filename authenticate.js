@@ -1,3 +1,5 @@
+var express = require("express");
+var router = express.Router();
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
 var User = require("./models/user");
@@ -38,3 +40,13 @@ exports.jwtPassport = passport.use(
 );
 
 exports.verifyUser = passport.authenticate("jwt", { session: false });
+
+exports.verifyAdmin = (req, res, next) => {
+  if (!req.user.admin) {
+    var err = new Error("You are not authorized to perform this operation!");
+    err.status = 403;
+    next(err);
+  } else {
+    next();
+  }
+};
